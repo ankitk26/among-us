@@ -13,6 +13,7 @@ export const setTokenCookie = (res: NextApiResponse, token: string) => {
     path: "/",
     sameSite: "strict",
   });
+  console.log(cookie);
   res.setHeader("Set-Cookie", cookie);
 };
 
