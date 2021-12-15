@@ -32,7 +32,7 @@ export default function Topics() {
       ) : (
         <div className="flex flex-col gap-3 mt-4">
           {tagsCount.map(([tag, value]) => (
-            <div className="flex items-center gap-3">
+            <div key={tag} className="flex items-center gap-3">
               <Link href={`/tags/${tag}`}>
                 <a>
                   <Badge>

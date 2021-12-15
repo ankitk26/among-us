@@ -15,7 +15,10 @@ export default function SearchResults() {
 
   return (
     <Layout title={`Search results for ${query}`}>
-      <h1 className="text-2xl font-semibold">Search results for "{query}"</h1>
+      <h1 className="text-2xl font-semibold">
+        {/* Using &quot; instead of "" because of eslint errors */}
+        Search results for &quot;{query}&quot;
+      </h1>
       <div className="flex flex-col items-stretch w-full gap-8 mt-4">
         <QuestionsList
           fetching={fetching}

@@ -121,7 +121,7 @@ export default function Login() {
               </Button>
 
               <p className="mt-4 text-sm text-gray-500">
-                Don't have an account?{" "}
+                Don&apos;t have an account?{" "}
                 <Link href="/register">
                   <a className="text-primary">Register</a>
                 </Link>
