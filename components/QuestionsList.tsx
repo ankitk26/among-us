@@ -22,8 +22,8 @@ export default function QuestionsList({
         </div>
       ) : (
         <div className="flex flex-col items-center gap-8">
-          {questions.length > 0 ? (
-            questions.map((question) => (
+          {questions?.length > 0 ? (
+            questions?.map((question) => (
               <QuestionCard key={question.id} question={question} />
             ))
           ) : (
