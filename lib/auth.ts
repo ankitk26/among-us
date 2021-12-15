@@ -1,11 +1,10 @@
-import { TOKEN_SECRET } from "@/constants/constants";
 import { MeQuery } from "@/src/generated/graphql";
 import Iron from "@hapi/iron";
 import { AuthenticationError } from "apollo-server-errors";
 import { NextApiRequest, NextApiResponse } from "next";
 import { getTokenCookie, MAX_AGE, setTokenCookie } from "./auth-cookies";
 
-// const TOKEN_SECRET = process.env.TOKEN_SECRET;
+const TOKEN_SECRET = process.env.TOKEN_SECRET;
 
 export const setLoginSession = async (
   res: NextApiResponse,
