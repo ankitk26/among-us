@@ -1,0 +1,3 @@
+mutation VoteEntity($entityId: ID!, $value: Int!) {
+  voteEntity(entityId: $entityId, value: $value)
+}

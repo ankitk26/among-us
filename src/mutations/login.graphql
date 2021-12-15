@@ -1,0 +1,7 @@
+mutation Login($identifier: String!, $password: String!) {
+  login(identifier: $identifier, password: $password) {
+    ...UserFragment
+    bio
+    email
+  }
+}

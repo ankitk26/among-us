@@ -1,0 +1,8 @@
+fragment DisplayQuestion on Question {
+  id
+  title
+  tags
+  slug
+  createdAt
+  urlSlug
+}

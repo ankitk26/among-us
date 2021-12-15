@@ -1,0 +1,6 @@
+mutation UpdateQuestion($questionId: ID!, $questionInput: QuestionInput) {
+  updateQuestion(questionId: $questionId, questionInput: $questionInput) {
+    id
+    slug
+  }
+}

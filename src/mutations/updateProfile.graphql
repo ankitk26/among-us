@@ -1,0 +1,7 @@
+mutation UpdateProfile($avatar: String, $bio: String) {
+  updateProfile(avatar: $avatar, bio: $bio) {
+    ...UserFragment
+    bio
+    email
+  }
+}

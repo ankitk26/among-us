@@ -1,0 +1,15 @@
+query Answers($questionId: ID!) {
+  answers(questionId: $questionId) {
+    id
+    text
+    user {
+      id
+      username
+      avatar
+    }
+    createdAt
+    updatedAt
+    votes
+    voteStatus
+  }
+}

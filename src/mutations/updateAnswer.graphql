@@ -1,0 +1,7 @@
+mutation UpdateAnswer($answerId: ID!, $text: String) {
+  updateAnswer(answerId: $answerId, text: $text) {
+    id
+    text
+    updatedAt
+  }
+}

@@ -1,0 +1,5 @@
+query TaggedQuestions($tag: String!) {
+  taggedQuestions(tag: $tag) {
+    ...QuestionSnippet
+  }
+}

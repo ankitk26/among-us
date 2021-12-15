@@ -1,0 +1,17 @@
+fragment QuestionSnippet on Question {
+  id
+  title
+  slug
+  urlSlug
+  createdAt
+  body
+  tags
+  user {
+    id
+    username
+    avatar
+  }
+  votes
+  voteStatus
+  answersCount
+}

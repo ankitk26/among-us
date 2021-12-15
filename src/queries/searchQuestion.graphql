@@ -1,0 +1,5 @@
+query SearchQuestion($query: String) {
+  search(query: $query) {
+    ...QuestionSnippet
+  }
+}

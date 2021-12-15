@@ -1,0 +1,5 @@
+mutation PostAnswer($questionId: ID!, $text: String!) {
+  postAnswer(questionId: $questionId, text: $text) {
+    id
+  }
+}

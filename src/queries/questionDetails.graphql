@@ -1,0 +1,6 @@
+query Question($questionId: ID!) {
+  question(id: $questionId) {
+    ...QuestionSnippet
+    voteStatus
+  }
+}

@@ -1,0 +1,16 @@
+mutation PostQuestion($questionInput: QuestionInput) {
+  postQuestion(questionInput: $questionInput) {
+    id
+    title
+    createdAt
+    updatedAt
+    body
+    tags
+    slug
+    answersCount
+    user {
+      ...UserFragment
+    }
+    votes
+  }
+}
