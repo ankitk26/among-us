@@ -134,6 +134,7 @@ export const resolvers = {
 
     voteStatus: async (parent, _args, { user }: Context) => {
       try {
+        if (!user) return 0;
         const vote = await Vote.findOne({ entityId: parent.id, user: user.id });
         if (!vote) return 0;
         return vote.value;
@@ -151,6 +152,7 @@ export const resolvers = {
   Answer: {
     votes: async (parent, _args) => {
       try {
+        console.log(parent);
         const totalVotes = await Vote.find({ entityId: parent.id });
         if (!totalVotes) return 0;
 
@@ -164,6 +166,9 @@ export const resolvers = {
 
     voteStatus: async (parent, _args, { user }: Context) => {
       try {
+        if (!user) {
+          return 0;
+        }
         const vote = await Vote.findOne({ entityId: parent.id, user: user.id });
         if (!vote) return 0;
         return vote.value;
@@ -177,7 +182,7 @@ export const resolvers = {
     questions: async (parent) => {
       const questionsByUser = await Question.find({ user: parent.id }).populate(
         "user",
-        ["id"]
+        ["id", "username"]
       );
       return questionsByUser;
     },

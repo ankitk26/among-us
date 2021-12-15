@@ -9,6 +9,7 @@ query Profile($username: String!) {
       ...DisplayQuestion
       user {
         id
+        username
       }
     }
     answers {

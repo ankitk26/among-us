@@ -1,7 +1,6 @@
 import { useDeleteAnswerMutation } from "@/src/generated/graphql";
 import { Button } from "@chakra-ui/button";
 import { TrashIcon } from "@heroicons/react/outline";
-import { useRouter } from "next/router";
 import { useState } from "react";
 import ModalWrapper from "./ModalWrapper";
 
@@ -12,10 +11,6 @@ interface IProps {
 export default function DeleteAnswerBtn({ answerId }: IProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
-
-  const router = useRouter();
-  const slug: string = router.query.slug as string;
-  const questionId = slug?.split("-").pop();
 
   const [, deleteAnswer] = useDeleteAnswerMutation();
 

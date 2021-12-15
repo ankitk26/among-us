@@ -325,7 +325,7 @@ export type ProfileQueryVariables = Exact<{
 }>;
 
 
-export type ProfileQuery = { __typename?: 'Query', profile?: { __typename?: 'Profile', id: string, username: string, avatar?: string | null | undefined, email?: string | null | undefined, bio?: string | null | undefined, questions?: Array<{ __typename?: 'Question', id: string, title: string, tags?: Array<string | null | undefined> | null | undefined, slug: string, createdAt?: string | null | undefined, urlSlug: string, user?: { __typename?: 'User', id: string } | null | undefined } | null | undefined> | null | undefined, answers?: Array<{ __typename?: 'Answer', id: string, question?: { __typename?: 'Question', id: string, title: string, tags?: Array<string | null | undefined> | null | undefined, slug: string, createdAt?: string | null | undefined, urlSlug: string } | null | undefined } | null | undefined> | null | undefined } | null | undefined };
+export type ProfileQuery = { __typename?: 'Query', profile?: { __typename?: 'Profile', id: string, username: string, avatar?: string | null | undefined, email?: string | null | undefined, bio?: string | null | undefined, questions?: Array<{ __typename?: 'Question', id: string, title: string, tags?: Array<string | null | undefined> | null | undefined, slug: string, createdAt?: string | null | undefined, urlSlug: string, user?: { __typename?: 'User', id: string, username: string } | null | undefined } | null | undefined> | null | undefined, answers?: Array<{ __typename?: 'Answer', id: string, question?: { __typename?: 'Question', id: string, title: string, tags?: Array<string | null | undefined> | null | undefined, slug: string, createdAt?: string | null | undefined, urlSlug: string } | null | undefined } | null | undefined> | null | undefined } | null | undefined };
 
 export type QuestionQueryVariables = Exact<{
   questionId: Scalars['ID'];
@@ -597,6 +597,7 @@ export const ProfileDocument = gql`
       ...DisplayQuestion
       user {
         id
+        username
       }
     }
     answers {
