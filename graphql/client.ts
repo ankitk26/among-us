@@ -18,7 +18,7 @@ const invalidateFields = (cache: Cache, fieldNames: string[]) => {
 };
 
 export const client = createClient({
-  url: `${baseURL}/api/graphql}`,
+  url: `${baseURL}/api/graphql`,
   exchanges: [
     dedupExchange,
     cacheExchange({
