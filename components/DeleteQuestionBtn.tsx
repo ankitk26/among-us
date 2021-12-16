@@ -25,8 +25,8 @@ export default function DeleteQuestionBtn({ questionId }: IProps) {
   const handleDelete = async () => {
     setIsDeleting(true);
     try {
-      const res = await deleteQuestion({ questionId });
-      console.log(res.data.deleteQuestion);
+      await deleteQuestion({ questionId });
+      // console.log(res.data.deleteQuestion);
       setIsDeleting(false);
       closeModal();
     } catch (err) {

@@ -11,6 +11,7 @@ export default function HeaderProfile() {
 
   const [, logout] = useLogoutMutation();
 
+  // handles logout functionality
   const handleLogout = async () => {
     const res = await logout();
     if (res.error) {

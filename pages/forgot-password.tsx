@@ -15,7 +15,7 @@ export default function ForgotPassword() {
   const [, forgotPassword] = useForgotPasswordMutation();
 
   return (
-    <Layout title="Forgot password page">
+    <Layout title="Forgot password">
       <div className="flex flex-col items-center">
         <h1 className="text-3xl font-semibold text-center text-gray-800">
           Reset password
@@ -33,7 +33,7 @@ export default function ForgotPassword() {
             if (res.error) {
               return console.log(res.error.graphQLErrors[0].message);
             }
-            console.log(res.data.forgotPassword);
+            // console.log(res.data.forgotPassword);
           }}
         >
           {({ isSubmitting, errors }) => (

@@ -53,7 +53,6 @@ export default function Register() {
           try {
             const res = await postQuestion({ questionInput: { ...values } });
             if (res.data.postQuestion) {
-              console.log(res.data.postQuestion);
               setSubmitting(false);
               router.push("/");
             }

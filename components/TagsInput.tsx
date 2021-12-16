@@ -20,6 +20,7 @@ export default function TagsInput({ value, setValue, error, touched }: IProps) {
   const handleTag = (e: React.KeyboardEvent<HTMLInputElement>) => {
     e.preventDefault();
 
+    // Adds a tag when user hits 'Enter' key
     if (
       e.key === "Enter" &&
       currentTag !== "" &&
@@ -30,6 +31,7 @@ export default function TagsInput({ value, setValue, error, touched }: IProps) {
     }
   };
 
+  // Able to edit the previous tag when current input is empty
   const checkDeleteTag = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Backspace" && currentTag === "") {
       setCurrentTag(tags[tags.length - 1]);
@@ -37,6 +39,7 @@ export default function TagsInput({ value, setValue, error, touched }: IProps) {
     }
   };
 
+  // Deletes a tag
   const deleteTag = (key: string) => {
     setTags((prev) => [...prev.filter((tag) => tag !== key)]);
   };
@@ -61,6 +64,7 @@ export default function TagsInput({ value, setValue, error, touched }: IProps) {
             </Tag>
           ))}
         </div>
+
         <input
           type="text"
           id="tags"
@@ -72,6 +76,7 @@ export default function TagsInput({ value, setValue, error, touched }: IProps) {
           placeholder="Add tag (only 8 allowed)"
         />
       </div>
+
       {touched && error && (
         <span className="text-xs text-red-600">{error}</span>
       )}

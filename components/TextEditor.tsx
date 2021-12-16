@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 
 const MDEditor = dynamic(() => import("@uiw/react-md-editor"), {
   ssr: false,
-  loading: () => <p className="mt-2 text-gray-500">Loading...</p>,
+  loading: () => <p className="mt-2 text-sm text-gray-500">Loading...</p>,
 });
 
 interface IProps {

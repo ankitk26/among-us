@@ -1,3 +1,4 @@
+import ErrorAlert from "@/components/ErrorAlert";
 import FormControl from "@/components/FormControl";
 import Layout from "@/components/Layout";
 import TagsInput from "@/components/TagsInput";
@@ -11,6 +12,7 @@ import {
 import { Button } from "@chakra-ui/button";
 import { Form, Formik, FormikHelpers } from "formik";
 import { useRouter } from "next/router";
+import { useEffect } from "react";
 import * as yup from "yup";
 
 const validationSchema = yup.object().shape({
@@ -35,13 +37,11 @@ export default function Register() {
 
   const [{ data, error }] = useQuestionQuery({ variables: { questionId } });
 
-  if (error) console.log(error);
-
-  // useEffect(() => {
-  //   if (!user && !authLoading) {
-  //     router.push("/login");
-  //   }
-  // }, [user, authLoading]);
+  useEffect(() => {
+    if (!user && !authLoading) {
+      router.push("/login");
+    }
+  }, [user, authLoading]);
 
   const [, updateQuestion] = useUpdateQuestionMutation();
   const question = data?.question;
@@ -61,6 +61,8 @@ export default function Register() {
   return (
     <Layout title="Update question">
       <h1 className="text-3xl font-semibold text-gray-800">Update question</h1>
+
+      {error && <ErrorAlert />}
 
       <Formik
         initialValues={getData()}

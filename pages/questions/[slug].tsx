@@ -1,4 +1,5 @@
 import AnswersList from "@/components/AnswersList";
+import ErrorAlert from "@/components/ErrorAlert";
 import Layout from "@/components/Layout";
 import MDParser from "@/components/MDParser";
 import PostAnswer from "@/components/PostAnswer";
@@ -19,10 +20,10 @@ export default function QuestionDetails() {
 
   const question = data?.question;
 
-  if (error) console.log(error);
-
   return (
-    <Layout title="Hello motto">
+    <Layout title={fetching ? "Loading...." : question?.title}>
+      {error && <ErrorAlert />}
+
       {fetching ? (
         <Skeleton />
       ) : (

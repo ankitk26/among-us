@@ -20,13 +20,18 @@ interface ToastProps {
 }
 
 export default function VotingButtons({ entity }: IProps) {
+  // If flag==0: user has not voted, flag==1: user has upvoted, flag==-1: user has downvoted
   const [flag, setFlag] = useState(0);
+
+  // Sum of all the values of votes
   const [total, setTotal] = useState(0);
+
   const [isVoting, setIsVoting] = useState(false);
   const [, vote] = useVoteEntityMutation();
   const { user } = useAuth();
 
   const toast = useToast();
+  // Opens toast when called
   const showToast = ({ title, status = "info" }: ToastProps) => {
     toast({
       title,
@@ -43,6 +48,7 @@ export default function VotingButtons({ entity }: IProps) {
     }
   }, [entity?.votes]);
 
+  // handles upvoting
   const incrementVote = async () => {
     if (!user) {
       return showToast({ title: "Log in to vote", status: "error" });
@@ -54,6 +60,7 @@ export default function VotingButtons({ entity }: IProps) {
     }
   };
 
+  // handles downvoting
   const decrementVote = () => {
     if (!user) {
       return showToast({ title: "Log in to vote", status: "error" });
@@ -65,24 +72,27 @@ export default function VotingButtons({ entity }: IProps) {
     }
   };
 
+  // Based on flag, update the vote status of user
   const handleVote = async (voteValue: number) => {
     setIsVoting(true);
     const res = await vote({ entityId: entity.id, value: voteValue });
     if (res.error) {
       return console.error(res.error.graphQLErrors[0].message);
     }
-    console.log(res.data);
+    // console.log(res.data);
     setIsVoting(false);
   };
 
   return (
     <div className="flex flex-col items-center gap-2">
+      {/* Upvote button */}
       <button onClick={incrementVote}>
         <ArrowUpIcon
           className={`w-4 h-4 ${flag === 1 ? "text-primary" : "text-gray-600"}`}
         />
       </button>
 
+      {/* Votes count display */}
       {isVoting ? (
         <Spinner size="sm" color="brand.500" />
       ) : (
@@ -99,6 +109,7 @@ export default function VotingButtons({ entity }: IProps) {
         </span>
       )}
 
+      {/* Downvote button */}
       <button onClick={decrementVote}>
         <ArrowDownIcon
           className={`w-4 h-4 ${

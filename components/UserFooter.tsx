@@ -13,6 +13,7 @@ interface IProps {
 export default function UserFooter({ question, className = "" }: IProps) {
   return (
     <div className={`flex items-center text-sm ${className}`}>
+      {/* Show user's avatar and username  */}
       <Avatar src={question.user.avatar || default_avatar} size="sm" />
       <h5 className="ml-4">
         <Link href={`/profile/${question.user.username}`}>

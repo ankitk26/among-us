@@ -1,3 +1,4 @@
+import ErrorAlert from "@/components/ErrorAlert";
 import Layout from "@/components/Layout";
 import UserStats from "@/components/UserStats";
 import UserTabs from "@/components/UserTabs";
@@ -20,23 +21,26 @@ export default function UserProfile() {
 
   const profile = data?.profile;
 
-  console.log(profile);
-
-  if (error) console.log(error.message);
-
   return (
-    <Layout title="User profile">
+    <Layout title={fetching ? "Loading..." : `${profile?.username}'s profile`}>
       <h1 className="text-2xl font-semibold text-gray-700">User Profile</h1>
+
+      {error && <ErrorAlert />}
+
       {fetching ? (
         <Skeleton />
       ) : (
         profile && (
           <section className="mt-12">
             <div className="flex items-start gap-14">
+              {/* Avatar of user */}
               <Avatar src={profile.avatar || default_avatar} size="2xl" />
               <div className="flex flex-col gap-4">
                 <div className="flex items-center gap-6">
+                  {/* User's username */}
                   <h2 className="text-lg leading-8">{profile.username}</h2>
+
+                  {/* Check if current profile is the logged-in user to be able to edit profile */}
                   {user?.id === profile.id && (
                     <Link href="/account/edit">
                       <a>
@@ -47,11 +51,16 @@ export default function UserProfile() {
                     </Link>
                   )}
                 </div>
+
+                {/* User's bio */}
                 <p className="text-sm leading-6 text-gray-700">{profile.bio}</p>
               </div>
             </div>
 
+            {/* User's stats */}
             <UserStats profile={profile} />
+
+            {/* Displays all questions and answers posted by the user */}
             <UserTabs profile={profile} />
           </section>
         )

@@ -13,6 +13,7 @@ export default function UserTabs({ profile }: IProps) {
     <div className="mt-20">
       <h3 className="text-lg font-medium text-gray-800">Contribution</h3>
       <ul className="flex items-center gap-8 mt-4" role="tablist">
+        {/* Questions tab */}
         <li>
           <button
             className={`block px-5 py-3 text-xs font-medium leading-normal uppercase ${
@@ -23,6 +24,8 @@ export default function UserTabs({ profile }: IProps) {
             Questions
           </button>
         </li>
+
+        {/* Answers tab */}
         <li>
           <button
             className={`block px-5 py-3 text-xs font-medium leading-normal uppercase ${
@@ -36,6 +39,7 @@ export default function UserTabs({ profile }: IProps) {
       </ul>
 
       <div className="flex flex-col gap-4 mt-8">
+        {/* Questions tab content */}
         {tabIndex === 1 &&
           (profile.questions.length > 0 ? (
             profile.questions.map((question) => (
@@ -45,6 +49,7 @@ export default function UserTabs({ profile }: IProps) {
             <p className="text-gray-500">No questions asked yet...</p>
           ))}
 
+        {/* Answers tab content */}
         {tabIndex === 2 &&
           (profile.answers.length > 0 ? (
             profile.answers.map((answer) => (

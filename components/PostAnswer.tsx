@@ -28,6 +28,8 @@ export default function PostAnswer({ questionId }: IProps) {
             onSubmit={async (values, { setSubmitting, setFieldValue }) => {
               setSubmitting(true);
               const { text } = values;
+
+              // Handling posting answer functionality
               if (text) {
                 const res = await postAnswer({ text, questionId });
                 setFieldValue("text", "");

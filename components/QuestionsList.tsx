@@ -15,12 +15,14 @@ export default function QuestionsList({
   return (
     <>
       {fetching ? (
+        // Show loading skeleton
         <div className="flex flex-col items-center w-full gap-8">
           {[1, 2, 3, 4, 5].map((n) => (
             <Skeleton key={n} />
           ))}
         </div>
       ) : (
+        // Map through all questions and display them
         <div className="flex flex-col items-center gap-8">
           {questions?.length > 0 ? (
             questions?.map((question) => (

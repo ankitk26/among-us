@@ -11,6 +11,7 @@ interface IProps {
   text: string;
 }
 
+// Get the answer_id and text as props
 export default function EditCommentBtn({ answerId, text }: IProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [, updateAnswer] = useUpdateAnswerMutation();

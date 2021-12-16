@@ -13,10 +13,8 @@ interface ICreateContextProps {
   res: NextApiResponse;
 }
 
-export async function createContext({
-  req,
-  res,
-}: ICreateContextProps): Promise<Context> {
+export async function createContext({ req, res }: ICreateContextProps) {
+  // Gets logged in user in server
   const user = await getUser(req);
   return { req, res, user };
 }

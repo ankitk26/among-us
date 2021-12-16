@@ -9,6 +9,7 @@ export const setLoginSession = async (
   res: NextApiResponse,
   session: MeQuery["me"]
 ) => {
+  console.log(TOKEN_SECRET);
   const token = sign(session, TOKEN_SECRET, {
     expiresIn: "8h",
   });

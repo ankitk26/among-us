@@ -17,7 +17,7 @@ import {
   VoteEntityMutationVariables,
 } from "@/src/generated/graphql";
 import { sendMail } from "@/utils/sendEmail";
-import { AuthenticationError, UserInputError } from "apollo-server-errors";
+import { AuthenticationError } from "apollo-server-errors";
 import { compare, hash } from "bcryptjs";
 import { sign, verify } from "jsonwebtoken";
 import slugify from "slugify";
@@ -25,6 +25,7 @@ import { Context } from "./context";
 
 export const resolvers = {
   Query: {
+    // Get all the questions
     questions: async (_parent, __args) => {
       try {
         const questions = await Question.find()
@@ -38,7 +39,8 @@ export const resolvers = {
       }
     },
 
-    question: async (_parent, { id }: { id: number }, ctx: Context) => {
+    // Get info about a particular question
+    question: async (_parent, { id }) => {
       try {
         const question = await Question.findById(id).populate("user", [
           "id",
@@ -51,6 +53,7 @@ export const resolvers = {
       }
     },
 
+    // Get's logged in user's data
     me: async (_parent: any, _args: any, ctx: Context) => {
       try {
         return ctx.user;
@@ -59,7 +62,8 @@ export const resolvers = {
       }
     },
 
-    answers: async (_parent: any, { questionId }: any) => {
+    // Gets all the answers for a particular question
+    answers: async (_parent: any, { questionId }) => {
       try {
         const answers = await Answer.find({ question: questionId }).populate(
           "user",
@@ -71,7 +75,8 @@ export const resolvers = {
       }
     },
 
-    profile: async (_parent: any, { username }: { username: string }) => {
+    // Get profile for any user
+    profile: async (_parent: any, { username }) => {
       try {
         const user = await User.findOne({ username }).select("-password");
         if (!user) {
@@ -83,6 +88,7 @@ export const resolvers = {
       }
     },
 
+    // Get all the questions containing given tag
     taggedQuestions: async (_parent, { tag }) => {
       try {
         const questions = await Question.find({ tags: tag }).populate("user", [
@@ -96,6 +102,7 @@ export const resolvers = {
       }
     },
 
+    // Searches for questions containing given query
     search: async (_parent, { query }: SearchQuestionQueryVariables) => {
       try {
         const relatedQuestions = await Question.find({
@@ -110,6 +117,7 @@ export const resolvers = {
       }
     },
 
+    // Gets all the tags from all the questions
     allTags: async (_parent, __args) => {
       const tagsObj = await Question.find().select("tags");
       return tagsObj;
@@ -117,8 +125,10 @@ export const resolvers = {
   },
 
   Question: {
+    // Used for routing purposes
     urlSlug: (parent) => `${parent.slug}-${parent.id}`,
 
+    // Get total votes for the given question
     votes: async (parent, _args) => {
       try {
         const totalVotes = await Vote.find({ entityId: parent.id });
@@ -132,6 +142,7 @@ export const resolvers = {
       }
     },
 
+    // Check if user has upvoted, downvoted or never voted the question
     voteStatus: async (parent, _args, { user }: Context) => {
       try {
         if (!user) return 0;
@@ -143,6 +154,7 @@ export const resolvers = {
       }
     },
 
+    // Get answers count for the question
     answersCount: async (parent) => {
       const count = await Answer.count({ question: parent.id });
       return count;
@@ -150,6 +162,7 @@ export const resolvers = {
   },
 
   Answer: {
+    // Get total votes for the given answer
     votes: async (parent, _args) => {
       try {
         console.log(parent);
@@ -164,6 +177,7 @@ export const resolvers = {
       }
     },
 
+    // Check if user has upvoted, downvoted or never voted the answer
     voteStatus: async (parent, _args, { user }: Context) => {
       try {
         if (!user) {
@@ -179,6 +193,7 @@ export const resolvers = {
   },
 
   Profile: {
+    // Get all the questions asked by a particular user
     questions: async (parent) => {
       const questionsByUser = await Question.find({ user: parent.id }).populate(
         "user",
@@ -187,6 +202,7 @@ export const resolvers = {
       return questionsByUser;
     },
 
+    // Get all the answers asked by a particular user
     answers: async (parent) => {
       const answersByUser = await Answer.find({ user: parent.id }).populate(
         "question",
@@ -231,19 +247,6 @@ export const resolvers = {
         return "deleted question along with answers";
       } catch (err) {
         console.log(err.message);
-        throw new AuthenticationError("Not authenticated");
-      }
-    },
-
-    deleteAnswer: async (_parent, { answerId }, ctx: Context) => {
-      try {
-        const answer = await Answer.findById(answerId);
-        if (!answer.user.equals(ctx.user.id)) {
-          throw new AuthenticationError("Not authorized");
-        }
-        await Answer.findByIdAndDelete(answerId);
-        return "deleted answer";
-      } catch (err) {
         throw new AuthenticationError("Not authenticated");
       }
     },
@@ -299,6 +302,7 @@ export const resolvers = {
     ) => {
       try {
         const answer = await Answer.findById(answerId);
+        // Check if answer posted belongs to logged-in user
         if (!ctx.user || !answer.user.equals(ctx.user.id)) {
           throw new AuthenticationError("Not authorized");
         }
@@ -311,6 +315,19 @@ export const resolvers = {
       }
     },
 
+    deleteAnswer: async (_parent, { answerId }, ctx: Context) => {
+      try {
+        const answer = await Answer.findById(answerId);
+        if (!answer.user.equals(ctx.user.id)) {
+          throw new AuthenticationError("Not authorized");
+        }
+        await Answer.findByIdAndDelete(answerId);
+        return "deleted answer";
+      } catch (err) {
+        throw new AuthenticationError("Not authenticated");
+      }
+    },
+
     register: async (
       _parent: any,
       { userInput }: RegisterMutationVariables,
@@ -318,17 +335,20 @@ export const resolvers = {
     ) => {
       try {
         const { email, username, password } = userInput;
+
+        // Check for account with existing email
         const checkEmail = await User.exists({ email });
         if (checkEmail) {
           throw new Error("Email already exists");
         }
 
+        // Check for account with existing username
         const checkUsername = await User.exists({ username });
         if (checkUsername) {
           throw new Error("Username already exists");
         }
 
-        // Generate salt to hash the password
+        // Encrypyt the password
         const hashedPassword = await hash(password, 12);
         const user = await User.create({
           email,
@@ -341,6 +361,8 @@ export const resolvers = {
           email: user.email,
           username: user.username,
         };
+
+        // Sets cookie with above payload
         await setLoginSession(ctx.res, payload);
         return payload;
       } catch (err) {
@@ -404,7 +426,7 @@ export const resolvers = {
       // Check if the user has already voted before
       if (entity) {
         entity.value += value;
-        const res = await entity.save();
+        await entity.save();
       } else {
         await Vote.create({
           value: 1,
@@ -430,6 +452,7 @@ export const resolvers = {
         expiresIn: "1h",
       });
 
+      // Send email to user with given token containing user's identity
       await sendMail(email, token);
       return token;
     },

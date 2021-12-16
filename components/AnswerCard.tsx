@@ -37,6 +37,7 @@ export default function AnswerCard({ answer }: IProps) {
               </a>
             </Link>{" "}
             posted on {getTime(answer.createdAt)}{" "}
+            {/* Show date if question was edited ever */}
             {answer.createdAt !== answer.updatedAt && (
               <EditedPostPopover timestamp={answer.updatedAt} />
             )}

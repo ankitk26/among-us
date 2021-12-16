@@ -5,9 +5,10 @@ export const getAvatar = async (
 ) => {
   if (avatarPreview === userAvatar) return userAvatar;
 
-  // Check for URL
-  if (avatarPreview.includes("http")) return avatarPreview;
+  // Check if new avatar is uploaded from desktop
+  if (!avatarPreview.includes("http://localhost:3000")) return avatarPreview;
 
+  // Save image in cloudinary and return the uploaded image's URL
   try {
     const formData = new FormData();
     formData.append("file", imageFile);

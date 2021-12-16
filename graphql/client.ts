@@ -6,6 +6,7 @@ import {
 import { Cache, cacheExchange } from "@urql/exchange-graphcache";
 import { createClient, dedupExchange, fetchExchange } from "urql";
 
+// Invalidate cache for given fields to update UI
 const invalidateFields = (cache: Cache, fieldNames: string[]) => {
   const key = "Query";
   const allFields = cache.inspectFields(key);
@@ -17,6 +18,7 @@ const invalidateFields = (cache: Cache, fieldNames: string[]) => {
   });
 };
 
+// Cache updation for different mutations
 export const client = createClient({
   url: `${baseURL}/api/graphql`,
   exchanges: [

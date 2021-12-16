@@ -22,6 +22,7 @@ export default function FormFontrol({
       <label htmlFor={id} className="capitalize">
         {name}
       </label>
+
       <Field
         type={type}
         id={id}
@@ -31,6 +32,8 @@ export default function FormFontrol({
           touched && error ? "border-red-600 text-red-600" : ""
         }`}
       />
+
+      {/* Show any error related to the particular field */}
       {touched && error && (
         <span className="text-xs text-red-600">{error}</span>
       )}

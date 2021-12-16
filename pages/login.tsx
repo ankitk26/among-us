@@ -60,7 +60,7 @@ export default function Login() {
             setSubmitting(false);
 
             setUser(res.data.login);
-            console.log(res.data.login);
+            // console.log(res.data.login);
             if (redirectUrl) {
               return router.push(redirectUrl);
             }

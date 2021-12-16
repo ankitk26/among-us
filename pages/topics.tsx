@@ -1,3 +1,4 @@
+import ErrorAlert from "@/components/ErrorAlert";
 import Layout from "@/components/Layout";
 import { useTopicsQuery } from "@/src/generated/graphql";
 import { Badge } from "@chakra-ui/react";
@@ -6,7 +7,7 @@ import { useEffect, useState } from "react";
 
 export default function Topics() {
   const [{ data, fetching, error }] = useTopicsQuery();
-  if (error) console.log(error);
+  // if (error) console.log(error);
 
   const [tagsCount, setTagsCount] = useState([]);
   const allTags = data?.allTags;
@@ -26,7 +27,7 @@ export default function Topics() {
   return (
     <Layout title="Explore topics">
       <h1 className="text-2xl font-semibold">Topics</h1>
-
+      {error && <ErrorAlert />}
       {fetching ? (
         <Skeleton />
       ) : (

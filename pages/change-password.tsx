@@ -74,7 +74,7 @@ export default function ChangePassword() {
             }
 
             // Successfully updated the password and redirected to login page
-            console.log(res.data.changePassword);
+            // console.log(res.data.changePassword);
             router.push("/login");
           }}
         >

@@ -22,11 +22,12 @@ export default function DeleteAnswerBtn({ answerId }: IProps) {
     setIsOpen(true);
   };
 
+  // Triggers when delete button is clicked
   const handleDelete = async () => {
     setIsDeleting(true);
     try {
-      const res = await deleteAnswer({ answerId });
-      console.log(res.data.deleteAnswer);
+      await deleteAnswer({ answerId });
+      // console.log(res.data.deleteAnswer);
       setIsDeleting(false);
       closeModal();
     } catch (err) {
@@ -40,6 +41,7 @@ export default function DeleteAnswerBtn({ answerId }: IProps) {
       <button type="button" onClick={openModal}>
         <TrashIcon className="w-4 h-4 text-red-600" />
       </button>
+
       <ModalWrapper isOpen={isOpen} setIsOpen={setIsOpen}>
         <TrashIcon className="w-16 h-16 text-red-600" />
         <h2 className="mt-12 font-semibold text-gray-700">

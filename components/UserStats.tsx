@@ -14,6 +14,7 @@ interface IProps {
 export default function UserStats({ profile }: IProps) {
   const [userPoints, setUserPoints] = useState(0);
 
+  // Calculates points earned
   useEffect(() => {
     if (profile) {
       const points = profile.questions.length * 5 + profile.answers.length * 10;
@@ -25,6 +26,7 @@ export default function UserStats({ profile }: IProps) {
     <div className="mt-20">
       <h3 className="text-lg font-medium text-gray-800">Stats</h3>
       <section className="flex items-center p-3 mt-4 text-gray-700 border rounded shadow-sm justify-evenly">
+        {/* Displays total questions posted by user */}
         <div className="flex flex-col items-center gap-2">
           <QuestionMarkCircleIcon className="w-5 h-5" />
           <span>
@@ -32,6 +34,8 @@ export default function UserStats({ profile }: IProps) {
             Questions
           </span>
         </div>
+
+        {/* Displays total answers posted by user */}
         <div className="flex flex-col items-center gap-2">
           <ReplyIcon className="w-5 h-5" />
           <span>
@@ -39,6 +43,8 @@ export default function UserStats({ profile }: IProps) {
             Answers
           </span>
         </div>
+
+        {/* Shows total points earned by user  */}
         <div className="flex flex-col items-center gap-2">
           <AcademicCapIcon className="w-5 h-5" />
           <Tooltip

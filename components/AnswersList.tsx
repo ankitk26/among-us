@@ -1,6 +1,6 @@
 import { useAnswersQuery } from "@/src/generated/graphql";
 import AnswerCard from "./AnswerCard";
-import Stringify from "./Stringify";
+import ErrorAlert from "./ErrorAlert";
 
 interface IProps {
   questionId: string;
@@ -15,8 +15,10 @@ export default function AnswersList({ questionId }: IProps) {
 
   return (
     <div>
-      <Stringify obj={error} />
+      {error && <ErrorAlert />}
+
       {fetching ? (
+        // Loading skeleton
         <div className="flex flex-col gap-12">
           <Skeleton />
           <Skeleton />
@@ -24,11 +26,14 @@ export default function AnswersList({ questionId }: IProps) {
         </div>
       ) : (
         <div>
+          {/* Check for answers length to display appropriate content */}
           {answers.length > 0 && (
             <p className="text-sm text-gray-700">
               {answers.length} {answers.length > 1 ? "answers" : "answer"}
             </p>
           )}
+
+          {/* Map through all the answers and display them */}
           <div className="flex flex-col gap-8 mt-4">
             {answers.length > 0 ? (
               answers.map((answer) => (

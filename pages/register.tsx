@@ -29,7 +29,7 @@ export default function Register() {
   const [, register] = useRegisterMutation();
 
   return (
-    <Layout title="Log in">
+    <Layout title="Register">
       <h1 className="text-3xl font-semibold text-center text-gray-800">
         Register
       </h1>
@@ -42,11 +42,11 @@ export default function Register() {
           { setSubmitting, setFieldError }: FormikHelpers<UserInput>
         ) => {
           const res = await register({ userInput: { ...values } });
-          console.log(res);
+          // console.log(res);
 
           if (res.error) {
-            const errMessage: string = res.error.graphQLErrors[0].message;
             setSubmitting(false);
+            const errMessage = res.error.graphQLErrors[0].message;
             if (errMessage.includes("Email")) {
               return setFieldError("email", errMessage);
             }

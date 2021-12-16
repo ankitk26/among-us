@@ -1,3 +1,4 @@
+import ErrorAlert from "@/components/ErrorAlert";
 import Layout from "@/components/Layout";
 import QuestionsList from "@/components/QuestionsList";
 import { useSearchQuestionQuery } from "@/src/generated/graphql";
@@ -11,14 +12,19 @@ export default function SearchResults() {
     variables: { query },
   });
 
-  if (error) console.log(error);
-
   return (
     <Layout title={`Search results for ${query}`}>
       <h1 className="text-2xl font-semibold">
         {/* Using &quot; instead of "" because of eslint errors */}
         Search results for &quot;{query}&quot;
       </h1>
+
+      {error && (
+        <div className="mt-4">
+          <ErrorAlert />
+        </div>
+      )}
+
       <div className="flex flex-col items-stretch w-full gap-8 mt-4">
         <QuestionsList
           fetching={fetching}

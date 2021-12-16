@@ -5,6 +5,7 @@ const TOKEN_NAME = "token";
 export const MAX_AGE = 60 * 60 * 8; // 8 hrs
 
 export const setTokenCookie = (res: NextApiResponse, token: string) => {
+  // Serialized the token and sets cookie in header
   const cookie = serialize(TOKEN_NAME, token, {
     maxAge: MAX_AGE,
     expires: new Date(Date.now() + MAX_AGE * 1000),
@@ -13,11 +14,11 @@ export const setTokenCookie = (res: NextApiResponse, token: string) => {
     path: "/",
     sameSite: "strict",
   });
-  console.log(cookie);
   res.setHeader("Set-Cookie", cookie);
 };
 
 export const removeTokenCookie = (res: NextApiResponse) => {
+  // Removes the cookie from headers
   const cookie = serialize(TOKEN_NAME, "", {
     maxAge: -1,
     path: "/",
