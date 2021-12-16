@@ -6,6 +6,8 @@ import { useAllQuestionsQuery } from "@/src/generated/graphql";
 export default function Home() {
   const [{ data, fetching, error }] = useAllQuestionsQuery();
 
+  console.log(process.env.NODE_ENV);
+
   return (
     <Layout title="Home">
       <Stringify obj={error} />
