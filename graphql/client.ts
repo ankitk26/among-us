@@ -17,7 +17,7 @@ const invalidateFields = (cache: Cache, fieldNames: string[]) => {
 };
 
 export const client = createClient({
-  url: "https://among-us-kappa.vercel.app/api/graphql",
+  url: "http://localhost:3000/api/graphql",
   exchanges: [
     dedupExchange,
     cacheExchange({

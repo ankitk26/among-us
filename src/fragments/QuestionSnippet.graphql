@@ -4,6 +4,7 @@ fragment QuestionSnippet on Question {
   slug
   urlSlug
   createdAt
+  updatedAt
   body
   tags
   user {

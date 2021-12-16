@@ -4,6 +4,7 @@ import { getTime } from "@/utils/getTime";
 import { PencilIcon } from "@heroicons/react/outline";
 import Link from "next/link";
 import DeleteQuestionBtn from "./DeleteQuestionBtn";
+import EditedPostPopover from "./EditedPopover";
 import QuestionTags from "./QuestionTags";
 
 interface IProps {
@@ -46,7 +47,10 @@ export default function QuestionMiniCard({
 
       {/* Date question was posted */}
       <span className="text-xs text-gray-500">
-        {getTime(question.createdAt)}
+        posted on {getTime(question.createdAt)}{" "}
+        {question.createdAt !== question.updatedAt && (
+          <EditedPostPopover timestamp={question.updatedAt} />
+        )}
       </span>
 
       {/* Question tags */}

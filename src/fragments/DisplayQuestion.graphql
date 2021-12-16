@@ -4,5 +4,6 @@ fragment DisplayQuestion on Question {
   tags
   slug
   createdAt
+  updatedAt
   urlSlug
 }

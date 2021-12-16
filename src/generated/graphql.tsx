@@ -201,9 +201,9 @@ export type UserInput = {
   username: Scalars['String'];
 };
 
-export type DisplayQuestionFragment = { __typename?: 'Question', id: string, title: string, tags?: Array<string | null | undefined> | null | undefined, slug: string, createdAt?: string | null | undefined, urlSlug: string };
+export type DisplayQuestionFragment = { __typename?: 'Question', id: string, title: string, tags?: Array<string | null | undefined> | null | undefined, slug: string, createdAt?: string | null | undefined, updatedAt?: string | null | undefined, urlSlug: string };
 
-export type QuestionSnippetFragment = { __typename?: 'Question', id: string, title: string, slug: string, urlSlug: string, createdAt?: string | null | undefined, body?: string | null | undefined, tags?: Array<string | null | undefined> | null | undefined, votes?: number | null | undefined, voteStatus?: number | null | undefined, answersCount?: number | null | undefined, user?: { __typename?: 'User', id: string, username: string, avatar?: string | null | undefined } | null | undefined };
+export type QuestionSnippetFragment = { __typename?: 'Question', id: string, title: string, slug: string, urlSlug: string, createdAt?: string | null | undefined, updatedAt?: string | null | undefined, body?: string | null | undefined, tags?: Array<string | null | undefined> | null | undefined, votes?: number | null | undefined, voteStatus?: number | null | undefined, answersCount?: number | null | undefined, user?: { __typename?: 'User', id: string, username: string, avatar?: string | null | undefined } | null | undefined };
 
 export type UserFragmentFragment = { __typename?: 'User', id: string, username: string, avatar?: string | null | undefined };
 
@@ -306,7 +306,7 @@ export type VoteEntityMutation = { __typename?: 'Mutation', voteEntity?: string 
 export type AllQuestionsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type AllQuestionsQuery = { __typename?: 'Query', questions?: Array<{ __typename?: 'Question', id: string, title: string, slug: string, urlSlug: string, createdAt?: string | null | undefined, body?: string | null | undefined, tags?: Array<string | null | undefined> | null | undefined, votes?: number | null | undefined, voteStatus?: number | null | undefined, answersCount?: number | null | undefined, user?: { __typename?: 'User', id: string, username: string, avatar?: string | null | undefined } | null | undefined } | null | undefined> | null | undefined };
+export type AllQuestionsQuery = { __typename?: 'Query', questions?: Array<{ __typename?: 'Question', id: string, title: string, slug: string, urlSlug: string, createdAt?: string | null | undefined, updatedAt?: string | null | undefined, body?: string | null | undefined, tags?: Array<string | null | undefined> | null | undefined, votes?: number | null | undefined, voteStatus?: number | null | undefined, answersCount?: number | null | undefined, user?: { __typename?: 'User', id: string, username: string, avatar?: string | null | undefined } | null | undefined } | null | undefined> | null | undefined };
 
 export type AnswersQueryVariables = Exact<{
   questionId: Scalars['ID'];
@@ -325,28 +325,28 @@ export type ProfileQueryVariables = Exact<{
 }>;
 
 
-export type ProfileQuery = { __typename?: 'Query', profile?: { __typename?: 'Profile', id: string, username: string, avatar?: string | null | undefined, email?: string | null | undefined, bio?: string | null | undefined, questions?: Array<{ __typename?: 'Question', id: string, title: string, tags?: Array<string | null | undefined> | null | undefined, slug: string, createdAt?: string | null | undefined, urlSlug: string, user?: { __typename?: 'User', id: string, username: string } | null | undefined } | null | undefined> | null | undefined, answers?: Array<{ __typename?: 'Answer', id: string, question?: { __typename?: 'Question', id: string, title: string, tags?: Array<string | null | undefined> | null | undefined, slug: string, createdAt?: string | null | undefined, urlSlug: string } | null | undefined } | null | undefined> | null | undefined } | null | undefined };
+export type ProfileQuery = { __typename?: 'Query', profile?: { __typename?: 'Profile', id: string, username: string, avatar?: string | null | undefined, email?: string | null | undefined, bio?: string | null | undefined, questions?: Array<{ __typename?: 'Question', id: string, title: string, tags?: Array<string | null | undefined> | null | undefined, slug: string, createdAt?: string | null | undefined, updatedAt?: string | null | undefined, urlSlug: string, user?: { __typename?: 'User', id: string, username: string } | null | undefined } | null | undefined> | null | undefined, answers?: Array<{ __typename?: 'Answer', id: string, question?: { __typename?: 'Question', id: string, title: string, tags?: Array<string | null | undefined> | null | undefined, slug: string, createdAt?: string | null | undefined, updatedAt?: string | null | undefined, urlSlug: string } | null | undefined } | null | undefined> | null | undefined } | null | undefined };
 
 export type QuestionQueryVariables = Exact<{
   questionId: Scalars['ID'];
 }>;
 
 
-export type QuestionQuery = { __typename?: 'Query', question?: { __typename?: 'Question', voteStatus?: number | null | undefined, id: string, title: string, slug: string, urlSlug: string, createdAt?: string | null | undefined, body?: string | null | undefined, tags?: Array<string | null | undefined> | null | undefined, votes?: number | null | undefined, answersCount?: number | null | undefined, user?: { __typename?: 'User', id: string, username: string, avatar?: string | null | undefined } | null | undefined } | null | undefined };
+export type QuestionQuery = { __typename?: 'Query', question?: { __typename?: 'Question', voteStatus?: number | null | undefined, id: string, title: string, slug: string, urlSlug: string, createdAt?: string | null | undefined, updatedAt?: string | null | undefined, body?: string | null | undefined, tags?: Array<string | null | undefined> | null | undefined, votes?: number | null | undefined, answersCount?: number | null | undefined, user?: { __typename?: 'User', id: string, username: string, avatar?: string | null | undefined } | null | undefined } | null | undefined };
 
 export type SearchQuestionQueryVariables = Exact<{
   query?: InputMaybe<Scalars['String']>;
 }>;
 
 
-export type SearchQuestionQuery = { __typename?: 'Query', search?: Array<{ __typename?: 'Question', id: string, title: string, slug: string, urlSlug: string, createdAt?: string | null | undefined, body?: string | null | undefined, tags?: Array<string | null | undefined> | null | undefined, votes?: number | null | undefined, voteStatus?: number | null | undefined, answersCount?: number | null | undefined, user?: { __typename?: 'User', id: string, username: string, avatar?: string | null | undefined } | null | undefined } | null | undefined> | null | undefined };
+export type SearchQuestionQuery = { __typename?: 'Query', search?: Array<{ __typename?: 'Question', id: string, title: string, slug: string, urlSlug: string, createdAt?: string | null | undefined, updatedAt?: string | null | undefined, body?: string | null | undefined, tags?: Array<string | null | undefined> | null | undefined, votes?: number | null | undefined, voteStatus?: number | null | undefined, answersCount?: number | null | undefined, user?: { __typename?: 'User', id: string, username: string, avatar?: string | null | undefined } | null | undefined } | null | undefined> | null | undefined };
 
 export type TaggedQuestionsQueryVariables = Exact<{
   tag: Scalars['String'];
 }>;
 
 
-export type TaggedQuestionsQuery = { __typename?: 'Query', taggedQuestions?: Array<{ __typename?: 'Question', id: string, title: string, slug: string, urlSlug: string, createdAt?: string | null | undefined, body?: string | null | undefined, tags?: Array<string | null | undefined> | null | undefined, votes?: number | null | undefined, voteStatus?: number | null | undefined, answersCount?: number | null | undefined, user?: { __typename?: 'User', id: string, username: string, avatar?: string | null | undefined } | null | undefined } | null | undefined> | null | undefined };
+export type TaggedQuestionsQuery = { __typename?: 'Query', taggedQuestions?: Array<{ __typename?: 'Question', id: string, title: string, slug: string, urlSlug: string, createdAt?: string | null | undefined, updatedAt?: string | null | undefined, body?: string | null | undefined, tags?: Array<string | null | undefined> | null | undefined, votes?: number | null | undefined, voteStatus?: number | null | undefined, answersCount?: number | null | undefined, user?: { __typename?: 'User', id: string, username: string, avatar?: string | null | undefined } | null | undefined } | null | undefined> | null | undefined };
 
 export type TopicsQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -360,6 +360,7 @@ export const DisplayQuestionFragmentDoc = gql`
   tags
   slug
   createdAt
+  updatedAt
   urlSlug
 }
     `;
@@ -370,6 +371,7 @@ export const QuestionSnippetFragmentDoc = gql`
   slug
   urlSlug
   createdAt
+  updatedAt
   body
   tags
   user {
@@ -557,9 +559,7 @@ export const AnswersDocument = gql`
     id
     text
     user {
-      id
-      username
-      avatar
+      ...UserFragment
     }
     createdAt
     updatedAt
@@ -567,7 +567,7 @@ export const AnswersDocument = gql`
     voteStatus
   }
 }
-    `;
+    ${UserFragmentFragmentDoc}`;
 
 export function useAnswersQuery(options: Omit<Urql.UseQueryArgs<AnswersQueryVariables>, 'query'> = {}) {
   return Urql.useQuery<AnswersQuery>({ query: AnswersDocument, ...options });

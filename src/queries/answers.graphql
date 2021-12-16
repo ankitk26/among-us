@@ -3,9 +3,7 @@ query Answers($questionId: ID!) {
     id
     text
     user {
-      id
-      username
-      avatar
+      ...UserFragment
     }
     createdAt
     updatedAt

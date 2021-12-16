@@ -6,6 +6,7 @@ import { Avatar } from "@chakra-ui/avatar";
 import Link from "next/link";
 import DeleteAnswerBtn from "./DeleteAnswerBtn";
 import EditAnswerBtn from "./EditAnswerBtn";
+import EditedPostPopover from "./EditedPopover";
 import MDParser from "./MDParser";
 import VotingButtons from "./VotingButtons";
 
@@ -26,19 +27,20 @@ export default function AnswerCard({ answer }: IProps) {
 
       <div className="w-full">
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-8">
+          <h5 className="text-xs text-gray-700">
             {/* User who posted the answer */}
             <Link href={`/profile/${answer.user.username}`}>
-              <a>
+              <a className="inline-block">
                 <h4 className="text-sm font-medium text-primary">
                   {answer.user.username}
                 </h4>
               </a>
-            </Link>
-            <span className="text-xs text-gray-500">
-              {getTime(answer.createdAt)}
-            </span>
-          </div>
+            </Link>{" "}
+            posted on {getTime(answer.createdAt)}{" "}
+            {answer.createdAt !== answer.updatedAt && (
+              <EditedPostPopover timestamp={answer.updatedAt} />
+            )}
+          </h5>
 
           {/* Buttons to edit and delete the answer if authenticated */}
           {answer.user.id === user?.id && (

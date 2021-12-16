@@ -10,7 +10,7 @@ export const theme = extendTheme({
       "*": {
         textDecoration: "none",
         "&:focus": {
-          outline: "none",
+          // boxShadow: "none !important",
         },
       },
     },
