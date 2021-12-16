@@ -1,3 +1,4 @@
+import { baseURL } from "@/constants/constants";
 import nodemailer from "nodemailer";
 
 export const sendMail = async (email: string, token: string) => {
@@ -21,7 +22,7 @@ export const sendMail = async (email: string, token: string) => {
     from: '"Ankit Kumar 👻" <ankit@me.com>', // sender address
     to: email, // list of receivers
     subject: "Change password link", // Subject line
-    html: `<p>Click this <a href="https://among-us-kappa.vercel.app/change-password?token=${token}">link</a> to change password:</p>`, // html body
+    html: `<p>Click this <a href="${baseURL}/change-password?token=${token}">link</a> to change password:</p>`, // html body
   });
 
   // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>

@@ -1,3 +1,4 @@
+import { baseURL } from "@/constants/constants";
 import {
   DeleteAnswerMutationVariables,
   UpdateAnswerMutationVariables,
@@ -17,7 +18,7 @@ const invalidateFields = (cache: Cache, fieldNames: string[]) => {
 };
 
 export const client = createClient({
-  url: "http://localhost:3000/api/graphql",
+  url: `${baseURL}/api/graphql}`,
   exchanges: [
     dedupExchange,
     cacheExchange({
