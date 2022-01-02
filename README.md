@@ -1,8 +1,43 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Among-us - discussion app
 
-## Getting Started
+A full-stack discussion application built using Next.JS, GraphQL, Typescript and MongoDB with user authentication. Users can post questions or queries in the app and other users can resolve or discuss those queries.
 
-First, run the development server:
+## Table of contents
+
+- [Technologies and Libraries used](#technologies)
+- [Installation](#installation)
+- [Features](#features)
+- [Sources](#sources)
+
+<div id="technologies">
+
+## Technologies and Libraries used
+
+- [Next.JS 12](https://nextjs.org/)
+- Typescript
+- MongoDB (using [Mongoose](https://mongoosejs.com/docs/guide.html) as ORM)
+- [TailwindCSS](https://tailwindcss.com/) and [Chakra-UI](https://chakra-ui.com/) (for UI)
+- [GraphQL](https://graphql.org/learn/) for querying data
+- Apollo-server-micro for serving back-end server
+- [Formik](https://formik.org/) and Yup for creating forms
+- [Urql](https://formidable.com/open-source/urql/docs/) for using GraphQL on client-side
+- [React-md-editor](https://github.com/uiwjs/react-md-editor) for rich text editor
+- Jsonwebtoken, Cookie and BcryptJS for authentication
+- [GraphQL Code generator](https://www.graphql-code-generator.com/docs/getting-started) for generating GraphQL hooks and types based on the GraphQL schema
+
+<div id="installation">
+
+## Installation
+
+Install the node modules using:
+
+```bash
+npm i
+# or
+yarn
+```
+
+Then, start the development server by entering either of the commands:
 
 ```bash
 npm run dev
@@ -10,25 +45,58 @@ npm run dev
 yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+<div id="features">
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+## Features
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+- View all the questions/queries and its discussion
+- Log in/register to post questions and answers
+- Edit your questions and answers
+- Delete your question or answer
+- Upvote or downvote a question or answer
+- View profile of any user
+- Edit your profile
+- Upload avatar in profile using Cloudinary cloud storage
+- Private routes accessible for only authorized users
+- Search for a topic or view all topics
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+<br/>
 
-## Learn More
+<figure>
+    <img src="./public/main.png"
+         alt="Main page">
+    <figcaption>All questions on home page</figcaption>
+</figure>
 
-To learn more about Next.js, take a look at the following resources:
+<br/>
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+<figure>
+    <img src="./public/single question.png"
+         alt="single question">
+    <figcaption>View a question and its answers</figcaption>
+</figure>
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+<br/>
 
-## Deploy on Vercel
+<figure>
+    <img src="./public/profile.png"
+         alt="user'sprofile">
+    <figcaption>View user's profile</figcaption>
+</figure>
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+<br/>
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+<figure>
+    <img src="./public/search.png"
+         alt="Search for topics">
+    <figcaption>Search for topics</figcaption>
+</figure>
+
+<div id="sources">
+
+## Sources
+
+- UI inspiration from [Dribble](https://dribbble.com/shots/10865779-Forume-Home-Page-Design)
+- Font used - [Work Sans](https://fonts.google.com/specimen/Work+Sans?query=work+sans#standard-styles)
+- GraphQL Code Generator based on Ben Awad's [youtube video](https://www.youtube.com/watch?v=DFTVPZvgnaQ)
+- Authentication functions based on Vercel's Next.JS [example](https://github.com/vercel/next.js/tree/canary/examples/api-routes-apollo-server-and-client-auth)
