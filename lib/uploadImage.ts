@@ -1,3 +1,5 @@
+import { baseURL } from "@/constants/constants";
+
 export const getAvatar = async (
   avatarPreview: string,
   userAvatar: string,
@@ -6,7 +8,7 @@ export const getAvatar = async (
   if (avatarPreview === userAvatar) return userAvatar;
 
   // Check if new avatar is uploaded from desktop
-  if (!avatarPreview.includes("http://localhost:3000")) return avatarPreview;
+  if (!avatarPreview.includes(baseURL)) return avatarPreview;
 
   // Save image in cloudinary and return the uploaded image's URL
   try {

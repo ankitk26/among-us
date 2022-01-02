@@ -2,7 +2,6 @@ import ErrorAlert from "@/components/ErrorAlert";
 import Layout from "@/components/Layout";
 import QuestionsList from "@/components/QuestionsList";
 import { useAllQuestionsQuery } from "@/src/generated/graphql";
-import { Alert, AlertIcon } from "@chakra-ui/react";
 
 export default function Home() {
   const [{ data, fetching, error }] = useAllQuestionsQuery();

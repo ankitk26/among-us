@@ -30,7 +30,9 @@ export default cors(async function handler(
     await startServer;
     await server.createHandler({ path: "/api/graphql" })(req, res);
   } catch (err) {
-    console.error(err.message);
+    if (err instanceof Error) {
+      console.error(err.message);
+    }
   }
 });
 
