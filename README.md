@@ -70,7 +70,7 @@ yarn dev
     <figcaption>All questions on home page</figcaption>
 </figure>
 
-<br>
+<br><br>
 
 <figure>
     <img src="./public/single question.png"
@@ -78,7 +78,7 @@ yarn dev
     <figcaption>View a question and its answers</figcaption>
 </figure>
 
-<br>
+<br><br>
 
 <figure>
     <img src="./public/profile.png"
@@ -86,7 +86,7 @@ yarn dev
     <figcaption>View user's profile</figcaption>
 </figure>
 
-<br>
+<br><br>
 
 <figure>
     <img src="./public/search.png"
