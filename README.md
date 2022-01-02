@@ -1,6 +1,8 @@
-# Among-us - discussion app
+# Among-us
 
 A full-stack discussion application built using Next.JS, GraphQL, Typescript and MongoDB with user authentication. Users can post questions or queries in the app and other users can resolve or discuss those queries.
+
+[Demo](http://among-us-kappa.vercel.app/) for the project
 
 ## Table of contents
 
@@ -60,7 +62,7 @@ yarn dev
 - Private routes accessible for only authorized users
 - Search for a topic or view all topics
 
-<br/>
+<br>
 
 <figure>
     <img src="./public/main.png"
@@ -68,7 +70,7 @@ yarn dev
     <figcaption>All questions on home page</figcaption>
 </figure>
 
-<br/>
+<br>
 
 <figure>
     <img src="./public/single question.png"
@@ -76,7 +78,7 @@ yarn dev
     <figcaption>View a question and its answers</figcaption>
 </figure>
 
-<br/>
+<br>
 
 <figure>
     <img src="./public/profile.png"
@@ -84,7 +86,7 @@ yarn dev
     <figcaption>View user's profile</figcaption>
 </figure>
 
-<br/>
+<br>
 
 <figure>
     <img src="./public/search.png"
